@@ -1,0 +1,19 @@
+<h1>All Posts</h1>
+
+<%= link_to "New Post", new_post_path, class: "button" %>
+
+<ul>
+  <% @posts.each do |post| %>
+    <li>
+      <strong><%=post.title%></strong><br>
+      <small>
+        <% if user_signed_in? %>
+          by <%= post.user.name %> |
+        <% end %>
+        <%= post.created_at.strftime("%B %d, %Y") %>
+      </small><br>
+      <p><%= truncate(post.body, length: 100) %></p>
+    </li>
+    <hr>
+  <% end %>
+</ul>
